@@ -1,0 +1,1 @@
+docker build -t earth_grid_backend:dev -f ./docker/Dockerfile .
