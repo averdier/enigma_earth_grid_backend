@@ -12,6 +12,11 @@ class User(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     username = db.Column(db.String(32), index=True, unique=True)
     secret_hash = db.Column(db.String(128), nullable=False)
+    email = db.Column(db.String(128), nullable=False, unique=True)
+    last_name = db.Column(db.String(32))
+    first_name = db.Column(db.String(32))
+    deposit = db.Column(db.Float(), default=0)
+    is_admin = db.Column(db.Boolean(), nullable=False, default=False)
 
     @property
     def secret(self):
@@ -25,6 +30,16 @@ class User(db.Model):
         return check_password_hash(self.secret_hash, pwd)
 
 
+class Chunk(db.Model):
+    __tablename__ = "chunks"
+
+    id = db.Column(db.Integer, primary_key=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    name = db.Column(db.String(32), nullable=False)
+    long = db.Column(db.Float(), nullable=False)
+    lat = db.Column(db.Float(), nullable=False)
+
+
 class MqttClient(db.Model):
     __tablename__ = 'mqtt_clients'
 
@@ -32,7 +47,7 @@ class MqttClient(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     username = db.Column(db.String(32), nullable=False, unique=True)
     password = db.Column(db.String(128), nullable=False)
-    is_admin = db.Column(db.Boolean, nullable=False, default=False)
+    is_admin = db.Column(db.Boolean(), nullable=False, default=False)
     accesses = db.relationship('MqttAccess', lazy='dynamic',
                                backref=db.backref('client', lazy=True))
 

@@ -54,8 +54,10 @@ from .endpoints.clients import ns as client_namespace
 from .endpoints.users import ns as users_namespace
 from .endpoints.accesses import ns as accesses_namespace
 from .endpoints.auth import ns as auth_namespace
+from .endpoints.chunks import ns as chunks_namespace
 
 api.add_namespace(auth_namespace)
 api.add_namespace(client_namespace)
 api.add_namespace(users_namespace)
 api.add_namespace(accesses_namespace)
+api.add_namespace(chunks_namespace)

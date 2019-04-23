@@ -12,6 +12,7 @@ user_post_model = api.model('User POST model', {
 user_model = api.model('User model', {
     'id': fields.Integer(required=True, description='User unique ID'),
     'username': fields.String(required=True, min_length=3, max_length=32, description='Username'),
+    'is_admin': fields.Boolean(required=True, default=False),
     'created_at': fields.DateTime(required=True, description='Created_at')
 })
 
