@@ -33,6 +33,7 @@ create table chunks
 		constraint chunks_pkey
 			primary key,
 	created_at timestamp,
+	topic varchar(32) not null,
 	name varchar(32) not null,
 	long double precision not null,
 	lat double precision not null
