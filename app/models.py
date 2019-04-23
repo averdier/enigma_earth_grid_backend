@@ -35,6 +35,7 @@ class Chunk(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    topic = db.Column(db.String(32), nullable=False)
     name = db.Column(db.String(32), nullable=False)
     long = db.Column(db.Float(), nullable=False)
     lat = db.Column(db.Float(), nullable=False)

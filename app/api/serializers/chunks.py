@@ -6,12 +6,14 @@ from .. import api
 chunk_post_model = api.model('Chunk POST model', {
     'name': fields.String(required=True, min_length=3, max_length=32, description='Name'),
     'long': fields.Float(required=True, description='Longitude'),
+    'topic': fields.String(required=True, description='Topic string'),
     'lat': fields.Float(required=True, description='Latitude')
 })
 
 chunk_search_model = api.model('Chunk POST search model', {
     'long': fields.Float(required=True, description='Longitude'),
-    'lat': fields.Float(required=True, description='Latitude')
+    'lat': fields.Float(required=True, description='Latitude'),
+    'size': fields.Float(required=False, default=1)
 })
 
 chunk_model = api.model('Chunk model', {

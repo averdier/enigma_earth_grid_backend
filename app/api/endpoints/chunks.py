@@ -41,7 +41,8 @@ class ChunkCollection(Resource):
         chunk = Chunk(
             name=data['name'],
             lat=data['lat'],
-            long=data['long']
+            long=data['long'],
+            topic=data['topic']
         )
 
         db.session.add(chunk)
@@ -85,12 +86,12 @@ class ChunkSearch(Resource):
         400: 'Validation error'
     })
     @ns.expect(chunk_search_model)
+    @ns.marshal_with(chunk_container_model)
     def post(self):
         """
         Search chunk by geo
         """
 
         data = request.json
-        chunks = Chunk.query.filter(data['lat'] - 0.25 <= Chunk.lat <= data['lat'] + 0.25 and data['long'] - 0.25 <= Chunk.long <= data['long'] + 0.25).all()
-
+        chunks = Chunk.query.filter(data['lat'] - data['size'] <= Chunk.lat, Chunk.lat <= data['lat'] + data['size']).filter(data['long'] - data['size'] <= Chunk.long, Chunk.long <= data['long'] + data['size']).all()
         return {'items': chunks}
