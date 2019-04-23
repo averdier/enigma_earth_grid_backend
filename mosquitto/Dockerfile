@@ -33,9 +33,9 @@ RUN chown -R mosquitto:mosquitto /mqtt
 EXPOSE 1883 9001
 
 ADD docker-entrypoint.sh /usr/bin/
-
+RUN chmod +x /usr/bin/docker-entrypoint.sh
 
 ADD custom.conf /mqtt/config/conf.d/custom.conf
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
 CMD ["/usr/local/sbin/mosquitto", "-c", "/mqtt/config/mosquitto.conf"]
