@@ -1,0 +1,202 @@
+2019-04-17 20:49:22,074 ERROR: Exception on /api/auth/token [POST] [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask_restplus\api.py", line 325, in wrapper
+    resp = resource(*args, **kwargs)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask\views.py", line 88, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask_restplus\resource.py", line 44, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask_restplus\marshalling.py", line 136, in wrapper
+    resp = f(*args, **kwargs)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py", line 72, in post
+    if not is_authorized_client(data['client_id'], data['client_secret']):
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py", line 25, in is_authorized_client
+    u = User.objects(client_id=client_id).first()
+AttributeError: type object 'User' has no attribute 'objects'
+2019-04-17 20:50:06,070 ERROR: Exception on /api/auth/token [POST] [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\engine\default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.InvalidTextRepresentation: invalid input syntax for integer: "rastadev"
+LINE 3: WHERE users.id = 'rastadev'
+                         ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask_restplus\api.py", line 325, in wrapper
+    resp = resource(*args, **kwargs)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask\views.py", line 88, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask_restplus\resource.py", line 44, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\flask_restplus\marshalling.py", line 136, in wrapper
+    resp = f(*args, **kwargs)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py", line 72, in post
+    if not is_authorized_client(data['client_id'], data['client_secret']):
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py", line 25, in is_authorized_client
+    u = User.query.get(client_id)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\orm\query.py", line 959, in get
+    return self._get_impl(ident, loading.load_on_pk_identity)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\orm\query.py", line 1069, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\orm\loading.py", line 282, in load_on_pk_identity
+    return q.one()
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3275, in one
+    ret = self.one_or_none()
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3244, in one_or_none
+    ret = list(self)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3317, in __iter__
+    return self._execute_and_instances(context)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3342, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\util\compat.py", line 383, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\util\compat.py", line 128, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\venv\lib\site-packages\sqlalchemy\engine\default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.DataError: (psycopg2.errors.InvalidTextRepresentation) invalid input syntax for integer: "rastadev"
+LINE 3: WHERE users.id = 'rastadev'
+                         ^
+
+[SQL: SELECT users.id AS users_id, users.created_at AS users_created_at, users.username AS users_username, users.secret_hash AS users_secret_hash 
+FROM users 
+WHERE users.id = %(param_1)s]
+[parameters: {'param_1': 'rastadev'}]
+(Background on this error at: http://sqlalche.me/e/9h9h)
+2019-04-17 20:51:07,468 ERROR: Unable to create token --> 'NAME' [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py:96]
+2019-04-17 20:52:11,180 INFO: rastadev claim token [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py:88]
+2019-04-17 20:53:03,420 INFO: rastadev claim token [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py:88]
+2019-04-17 20:53:23,294 WARNING: Unable to verify token [eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpc3MiOiJhcmR1aW5vX2FwaSIsImF1ZCI6ImFyZHVpbm9fbXF0dCIsImlhdCI6MTU1NTUyNzE4MywiZXhwIjoxNTU1NjEzNTgzLCJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6InJhc3RhZGV2IiwiY3JlYXRlZF9hdCI6IjIwMTktMDQtMTdUMTg6NDg6NTMuNzQzOTQzIn19.iuRwk5Ia5oNj5xRsc3UXxERTPZUytW1mD5OhR4kx1iB18MtPbjOOLv5fkBknJiMgTihqSthXtmaqXHqHkE7eUCjfgcAo0ZHP7Kf6A7jTgE25YqctaFfuve_vLUCip61_-YzwXc7pSHsXlaNMPYKta5GbSYZgggGK07OBP0QMt6N4d16VxM9qcxMP_g4shQwvJDlJBZRHpbs0scLlUMPo8zSZ_C48j49x8VlW6B0aVYdZVDXuQwdII1maF_v5_oKdYp2HZH-1qHCacmOr9zyEi3R9EjPda4PY9q6G6V-F2TvVJPGn7LdIRypVbORvlggPIAq2y6vn-zsYys-tVZeW_oSwUz-bS5AuZQkNp8ul8sK9egb-83xVspV5atXhu1aPZitVhX8YLI8cI1dDoSkkLvbaiP30uCfpsc5kGDrWcCFf_SnZw8tJhXm33Cvf3RE9VbIOzT5tq3kd3uv9fHeBwNwnOk9DfHZukTfPeHY16KfDkCaTVMwTlTyPpOd5887fDg1zz_ufj3BT7H0r8-ZrBvCWrAKX6DPaNMQhNuuc-cUjOgzeCNvGS9Z-osAkhN-kt21Md0yXtg7PvkcXzehGt2cdh_GkJWF49W0uQpHDW6O4mOGDXg11sFmw7iC7WfHCB4reyYIDiJ-dCkVJ_fYr_ffeqZIebj2hNX7bY4Dye1E], reason : Invalid audience [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\__init__.py:47]
+2019-04-18 19:14:04,407 INFO: rastadev claim token [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py:88]
+2019-04-18 19:16:03,756 INFO: rastadev claim token [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py:88]
+2019-04-18 19:16:12,118 INFO: rastadev claim token [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py:88]
+2019-04-18 19:17:04,115 INFO: rastadev claim token [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py:88]
+2019-04-18 19:23:01,927 INFO: rastadev claim token [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py:88]
+2019-04-18 19:26:03,826 INFO: rastadev claim token [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py:88]
+2019-04-18 19:27:37,050 INFO: rastadev claim token [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py:88]
+2019-04-18 21:51:07,286 INFO: rastadev claim token [in C:\Users\averd\Projets\Sandbox\arduino_mqtt_led\app\api\endpoints\auth.py:88]
+2019-04-23 11:53:09,991 INFO: rastadev claim token [in D:\Enigma\hackaton\enigma_earth_grid_backend\app\api\endpoints\auth.py:88]
+2019-04-23 11:53:38,726 INFO: rastadev get profile [in D:\Enigma\hackaton\enigma_earth_grid_backend\app\api\endpoints\auth.py:52]
+2019-04-23 15:23:38,034 WARNING: Unable to verify token [], reason : Not enough segments [in D:\Enigma\hackaton\enigma_earth_grid_backend\app\api\__init__.py:47]
+2019-04-23 17:20:36,859 INFO: rastadev claim token [in D:\Enigma\hackaton\enigma_earth_grid_backend\app\api\endpoints\auth.py:88]
+2019-04-23 18:03:19,302 ERROR: Exception on /api/chunks/ [POST] [in D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\engine\default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column chunks.topic does not exist
+LINE 1: ...hunks_id, chunks.created_at AS chunks_created_at, chunks.top...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask_restplus\api.py", line 325, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask_httpauth.py", line 104, in decorated
+    return f(*args, **kwargs)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask\views.py", line 88, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask_restplus\resource.py", line 44, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask_restplus\marshalling.py", line 136, in wrapper
+    resp = f(*args, **kwargs)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\app\api\endpoints\chunks.py", line 38, in post
+    if Chunk.query.filter_by(name=data['name']).first() is not None:
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\orm\query.py", line 3215, in first
+    ret = list(self[0:1])
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\orm\query.py", line 3007, in __getitem__
+    return list(res)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\orm\query.py", line 3317, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\orm\query.py", line 3342, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\engine\base.py", line 988, in execute
+    return meth(self, multiparams, params)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\sql\elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\engine\base.py", line 1107, in _execute_clauseelement
+    distilled_params,
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\engine\base.py", line 1248, in _execute_context
+    e, statement, parameters, cursor, context
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\engine\base.py", line 1466, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\util\compat.py", line 383, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\util\compat.py", line 128, in reraise
+    raise value.with_traceback(tb)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\engine\base.py", line 1244, in _execute_context
+    cursor, statement, parameters, context
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\engine\default.py", line 552, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column chunks.topic does not exist
+LINE 1: ...hunks_id, chunks.created_at AS chunks_created_at, chunks.top...
+                                                             ^
+
+[SQL: SELECT chunks.id AS chunks_id, chunks.created_at AS chunks_created_at, chunks.topic AS chunks_topic, chunks.name AS chunks_name, chunks.long AS chunks_long, chunks.lat AS chunks_lat 
+FROM chunks 
+WHERE chunks.name = %(name_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'name_1': 'chunk1', 'param_1': 1}]
+(Background on this error at: http://sqlalche.me/e/f405)
+2019-04-23 18:08:07,070 WARNING: Unable to verify token [eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzUxMiJ9.eyJpc3MiOiJhcmR1aW5vX2FwaSIsImF1ZCI6ImFyZHVpbm9fbXF0dCIsImlhdCI6MTU1NjAzMjgzNiwiZXhwIjoxNTU2MTE5MjM2LCJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6InJhc3RhZGV2IiwiaXNfYWRtaW4iOmZhbHNlLCJjcmVhdGVkX2F0IjoiMjAxOS0wNC0yM1QxNDo0MzoxNS4xNzM3MTAifX0.TdV5OVaCTMs6F8NTL9NSmkmLe8KYqUxH_EgxO_7s-osGgI3VVZYAWw6o9pNQ_83QGZJ860kSK0OqMFeG0Q6xVnIKvrYFvdUy-f9tu2v3jTuEEMA1DbrCV4MzwF-Oh8rnGE0wp3RDBHkwQuWwSKt-5Iu21WukB-QvZsIqyHU1g0294rqr5HYrUvtQBSVVbvnUokpkRn0r8RzQ67qvAazQXem1zTjvjUNhon33YX1NAdnxp5XgEi2uL8vIo0YdfuC2gOpdbSG59Uhsa8kwcQmjN5FFwR3APrTU9yDqaH3L8Q6mP45wSDw9M8C6Ty6Prnxqvt9WrijtaM-WF5ksEd_dKGEO76OvT0IMr_suUMPQ5iuOo1PooF1RorrsWvMH6ar8Y8tgmkHqBcD3XlKAabvJEl27U-dIp_adpamuGu8Oxc1GqO0nQedySQvcMSNps70qB5010SiufEeUJfaBETvNMKrlnax3ejL7ikkwOIfh9R7RLRUaUYGAUoFWVU24q9U7QMv6UvCyssKq5qqaE0edHi0lTt3ame98UAa3u7uMPFC0ETH-4VXSTEW6tdi3AZvLkhDM6eqPMEXqUB9Dp80py4eQxL-LzeSJvxCuH6oTX7busUNhZh5tb_O8A1cTRPgF-L_ukliiZNCPNV2Z-PqZJWDvmoXTb0Pz3VsOGP6-9gU], reason : (psycopg2.errors.AdminShutdown) terminating connection due to unexpected postmaster exit
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT users.id AS users_id, users.created_at AS users_created_at, users.username AS users_username, users.secret_hash AS users_secret_hash, users.email AS users_email, users.last_name AS users_last_name, users.first_name AS users_first_name, users.deposit AS users_deposit, users.is_admin AS users_is_admin 
+FROM users 
+WHERE users.id = %(param_1)s]
+[parameters: {'param_1': 1}]
+(Background on this error at: http://sqlalche.me/e/e3q8) [in D:\Enigma\hackaton\enigma_earth_grid_backend\app\api\__init__.py:47]
+2019-04-23 18:12:05,356 INFO: rastadev claim token [in D:\Enigma\hackaton\enigma_earth_grid_backend\app\api\endpoints\auth.py:88]
+2019-04-23 18:15:35,407 INFO: rastadev claim token [in D:\Enigma\hackaton\enigma_earth_grid_backend\app\api\endpoints\auth.py:88]
+2019-04-23 18:28:39,895 ERROR: Exception on /api/chunks/search [POST] [in D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask_restplus\api.py", line 325, in wrapper
+    resp = resource(*args, **kwargs)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask\views.py", line 88, in view
+    return self.dispatch_request(*args, **kwargs)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\flask_restplus\resource.py", line 44, in dispatch_request
+    resp = meth(*args, **kwargs)
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\app\api\endpoints\chunks.py", line 95, in post
+    chunks = Chunk.query.filter(data['lat'] - data['size'] <= Chunk.lat <= data['lat'] + data['size'] and data['long'] - data['size'] <= Chunk.long <= data['long'] + data['size']).all()
+  File "D:\Enigma\hackaton\enigma_earth_grid_backend\env\lib\site-packages\sqlalchemy\sql\elements.py", line 3090, in __bool__
+    raise TypeError("Boolean value of this clause is not defined")
+TypeError: Boolean value of this clause is not defined
+2019-04-24 11:39:09,421 INFO: rastadev claim token [in D:\Enigma\hackaton\enigma_earth_grid_backend\app\api\endpoints\auth.py:88]

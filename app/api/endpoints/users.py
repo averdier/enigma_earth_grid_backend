@@ -37,10 +37,17 @@ class UserCollection(Resource):
 
         if User.query.filter_by(username=data['username']).first() is not None:
             abort(409, error='Username already exist')
+        if User.query.filter_by(email=data['email']).first() is not None:
+            abort(409, error='Email already exist')
 
         user = User(
             username=data['username'],
-            secret=data['secret']
+            secret=data['secret'],
+            email=data['email'],
+            last_name=data['last_name'],
+            first_name=data['first_name'],
+            deposit=data['deposit'],
+            is_admin=data['is_admin'],
         )
 
         db.session.add(user)
