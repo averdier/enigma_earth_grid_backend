@@ -34,6 +34,18 @@ services:
     depends_on:
       - database
 
+  chunk_daemon:
+    image: 'chunk_daemon:dev'
+    env_file: *envfile
+    volumes:
+      - ./logs:/logs
+    environment:
+      - BROKER_USERNAME=chunk_daemon
+      - BROKER_PASSWORD=chunk_daemon
+      - LOG_PATH=/logs/chunk_daemon.log
+    depends_on:
+      - broker
+
   broker:
     build: ../mosquitto
     depends_on:
