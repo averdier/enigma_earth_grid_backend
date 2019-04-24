@@ -2,6 +2,6 @@ __pycache__
 env
 venv
 .vscode
-docker/logs/
+./docker/logs/
 .idea
 .log
