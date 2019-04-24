@@ -98,7 +98,7 @@ alter table mqtt_access owner to postgres
 
 INSERT INTO mqtt_clients (created_at, username, password, is_admin) VALUES ('2019-04-24 06:44:13.079818', 'device01', 'PBKDF2$sha256$10000$FB3rtpBBnyEpPWuW$o0cUsHRYisKyvk6IqaesA3YN9Fv2QSg8', false);
 INSERT INTO mqtt_clients (created_at, username, password, is_admin) VALUES ('2019-04-24 06:44:13.079818', 'chunk_daemon', 'PBKDF2$sha256$10000$jB5eSaLjPmq1M7YM$khKiaH1DyEetrYy5a6L6VdFOn4WIbgyv', true);
-INSERT INTO mqtt_clients (reated_at, username, password, is_admin) VALUES ('2019-04-24 06:44:13.079818', 'chunk_counter', 'PBKDF2$sha256$10000$8VyTNQJI1qWdxP2Y$z3UU7LdCPnEZXThP+31nS2igZYakCWAQ', true);
+INSERT INTO mqtt_clients (created_at, username, password, is_admin) VALUES ('2019-04-24 06:44:13.079818', 'chunk_counter', 'PBKDF2$sha256$10000$8VyTNQJI1qWdxP2Y$z3UU7LdCPnEZXThP+31nS2igZYakCWAQ', true);
 
 INSERT INTO mqtt_access (created_at, updated_at, topic, access, username) VALUES ('2019-04-24 06:45:51.039637', null, 'sensors/device01/from_clients', 1, 'device01');
 INSERT INTO mqtt_access (created_at, updated_at, topic, access, username) VALUES ('2019-04-24 06:46:03.994846', null, 'sensors/device01/from_device', 2, 'device01');
