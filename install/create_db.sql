@@ -85,4 +85,5 @@ INSERT INTO mqtt_clients (id, created_at, username, password, is_admin) VALUES (
 INSERT INTO mqtt_access (id, created_at, updated_at, topic, access, username) VALUES (1, '2019-04-24 06:45:51.039637', null, 'sensors/device01/from_clients', 1, 'device01');
 INSERT INTO mqtt_access (id, created_at, updated_at, topic, access, username) VALUES (2, '2019-04-24 06:46:03.994846', null, 'sensors/device01/from_device', 2, 'device01');
 
-INSERT INTO public.chunks (id, created_at, topic, name, long, lat) VALUES (1, '2019-04-24 06:44:13.078317', 'chunks/8324716771535245060/data', 'Lille', 3.055467, 50.75);
+INSERT INTO public.chunks (id, created_at, topic, name, long, lat, price) VALUES (1, '2019-04-24 06:44:13.078317', 'chunks/8324716771535245060/data', 'Lille', 3.055467, 50.75, 0);
+INSERT INTO public.user_chunk (user_id, chunk_id) VALUES (1, 1);
