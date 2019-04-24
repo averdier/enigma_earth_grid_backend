@@ -23,9 +23,17 @@ chunk_model = api.model('Chunk model', {
     'long': fields.Float(required=True, description='Longitude'),
     'lat': fields.Float(required=True, description='Latitude'),
     'price': fields.Float(required=True, description='Price'),
-    'created_at': fields.DateTime(required=True, description='Created_at')
+    'created_at': fields.DateTime(required=True, description='Created_at'),
+})
+
+chunk_res_search_model = api.inherit('Chunk response search model', chunk_model, {
+    'owned': fields.Boolean(required=True)
 })
 
 chunk_container_model = api.model('Chunk container model', {
     'items': fields.List(fields.Nested(chunk_model), required=True, description='Chunk list')
+})
+
+chunk_res_search_container_model = api.model('Chunk response search container model', {
+    'items': fields.List(fields.Nested(chunk_res_search_model), required=True, description='Chunk list')
 })

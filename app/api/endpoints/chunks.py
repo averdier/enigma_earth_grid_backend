@@ -3,7 +3,7 @@
 from flask import request, g
 from flask_restplus import Namespace, Resource, abort
 from .. import auth
-from ..serializers.chunks import chunk_container_model, chunk_model, chunk_post_model, chunk_search_model
+from ..serializers.chunks import chunk_container_model, chunk_model, chunk_post_model, chunk_search_model, chunk_res_search_container_model
 from app.extensions import db
 from app.models import Chunk, User
 
@@ -84,17 +84,23 @@ class ChunkItem(Resource):
 
 @ns.route('/search')
 class ChunkSearch(Resource):
+    decorators = [auth.login_required]
+
     @ns.doc(response={
         409: 'Value exist',
         400: 'Validation error'
     })
     @ns.expect(chunk_search_model)
-    @ns.marshal_with(chunk_container_model)
+    @ns.marshal_with(chunk_res_search_container_model)
     def post(self):
         """
         Search chunk by geo
         """
-
         data = request.json
+        client_chunks = g.client.chunks.all()
         chunks = Chunk.query.filter(data['lat'] - data['size'] <= Chunk.lat, Chunk.lat <= data['lat'] + data['size']).filter(data['long'] - data['size'] <= Chunk.long, Chunk.long <= data['long'] + data['size']).all()
+
+        for chunk in chunks:
+            chunk.owned = chunk in client_chunks
+
         return {'items': chunks}
