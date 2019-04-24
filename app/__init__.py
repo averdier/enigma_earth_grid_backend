@@ -46,7 +46,8 @@ def extensions(flask_app):
             admin = User(
                 username='rastadev',
                 secret='rastadev',
-                email='rasta@dev.com'
+                email='rasta@dev.com',
+                is_admin=True
             )
             db.session.add(admin)
             db.session.commit()

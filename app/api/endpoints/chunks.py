@@ -1,11 +1,11 @@
 # coding: utf-8
 
-from flask import request
+from flask import request, g
 from flask_restplus import Namespace, Resource, abort
 from .. import auth
 from ..serializers.chunks import chunk_container_model, chunk_model, chunk_post_model, chunk_search_model
 from app.extensions import db
-from app.models import Chunk
+from app.models import Chunk, User
 
 ns = Namespace('chunks', description='Chunks related operations')
 
@@ -20,7 +20,12 @@ class ChunkCollection(Resource):
         Return chunks list
         """
 
-        return {'items': Chunk.query.all()}
+        print(g.client.is_admin)
+
+        if g.client.is_admin:
+            return {'items': Chunk.query.all()}
+
+        return {'items': g.client.chunks.all()}
 
     @ns.marshal_with(chunk_model, code=201, description='Chunk successfully added.')
     @ns.doc(response={
@@ -42,7 +47,8 @@ class ChunkCollection(Resource):
             name=data['name'],
             lat=data['lat'],
             long=data['long'],
-            topic=data['topic']
+            topic=data['topic'],
+            price=data['price']
         )
 
         db.session.add(chunk)

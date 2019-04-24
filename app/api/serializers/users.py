@@ -20,11 +20,15 @@ user_model = api.model('User model', {
     'email': fields.String(required=True, description='Email'),
     'last_name': fields.String(required=True, description='Last Name'),
     'first_name': fields.String(required=True, description='First Name'),
-    'deposit': fields.Float(required=True, description='Deposit'),
-    'is_admin': fields.Boolean(required=True, default=False),
+    'deposit': fields.Float(default=0, description='Deposit'),
+    'is_admin': fields.Boolean(default=False, description='Is_admin'),
     'created_at': fields.DateTime(required=True, description='Created_at'),
 })
 
 user_container_model = api.model('User container model', {
     'items': fields.List(fields.Nested(user_model), required=True, description='User list')
+})
+
+user_chunk_model = api.model('User chunk model', {
+    'chunk_id': fields.Integer(required=True, description="Chunk Id")
 })

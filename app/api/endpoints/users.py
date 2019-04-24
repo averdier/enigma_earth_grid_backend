@@ -1,11 +1,12 @@
 # coding: utf-8
 
-from flask import request
+from flask import request, g
 from flask_restplus import Namespace, Resource, abort
 from .. import auth
-from ..serializers.users import user_container_model, user_model, user_post_model
+from ..serializers.users import user_container_model, user_model, user_post_model, user_chunk_model
+from ..serializers.chunks import chunk_model
 from app.extensions import db
-from app.models import User
+from app.models import User, Chunk
 
 ns = Namespace('users', description='Users related operations')
 
@@ -82,3 +83,29 @@ class UserItem(Resource):
         db.session.commit()
 
         return 'User successfully deleted.', 204
+
+
+@ns.route('/chunks')
+@ns.response(404, 'Chunk not found')
+class ChunkUserItem(Resource):
+    decorators = [auth.login_required]
+
+    @ns.marshal_with(user_model, code=201, description='Chunk successfully added to user.')
+    @ns.doc(response={
+        409: 'Value exist',
+        400: 'Validation error'
+    })
+    @ns.expect(user_chunk_model)
+    def post(self):
+        """
+        Add chunk to current user
+        """
+
+        data = request.json
+        chunk = Chunk.query.get_or_404(data['chunk_id'])
+        g.client.chunks.append(chunk)
+
+        db.session.add(g.client)
+        db.session.commit()
+
+        return g.client, 201
