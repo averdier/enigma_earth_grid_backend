@@ -2,6 +2,7 @@
 
 from flask_restplus import fields
 from .. import api
+from .chunks import chunk_model
 
 
 user_post_model = api.model('User POST model', {
@@ -25,10 +26,18 @@ user_model = api.model('User model', {
     'created_at': fields.DateTime(required=True, description='Created_at'),
 })
 
+user_detail_model = api.inherit('User detail model', user_model, {
+    'chunks': fields.List(fields.Nested(chunk_model))
+})
+
 user_container_model = api.model('User container model', {
     'items': fields.List(fields.Nested(user_model), required=True, description='User list')
 })
 
 user_chunk_model = api.model('User chunk model', {
     'chunk_id': fields.Integer(required=True, description="Chunk Id")
+})
+
+user_deposit_model = api.model('User deposit model', {
+    'amount': fields.Float(required=True, description='Amount to deposit', min=0)
 })

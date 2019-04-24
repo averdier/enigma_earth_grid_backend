@@ -19,9 +19,6 @@ class ChunkCollection(Resource):
         """
         Return chunks list
         """
-
-        print(g.client.is_admin)
-
         if g.client.is_admin:
             return {'items': Chunk.query.all()}
 

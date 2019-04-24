@@ -7,13 +7,13 @@ from .. import api
 client_post_model = api.model('Client POST model', {
     'username': fields.String(required=True, min_length=3, max_length=32, description='Username'),
     'password': fields.String(required=True, min_length=3, max_length=16, description='Password'),
-    'is_admin': fields.Boolean(required=True, default=False, description='Administrator status')
+    'is_admin': fields.Boolean(required=False, default=False, description='Administrator status')
 })
 
 client_minimal_model = api.model('Client minimal model', {
     'id': fields.Integer(required=True, description='Unique ID'),
     'username': fields.String(required=True, description='Username'),
-    'is_admin': fields.Boolean(required=True, description='Administrator status')
+    'is_admin': fields.Boolean(default=False, description='Administrator status')
 })
 
 access_nested = api.model('Access nested', {

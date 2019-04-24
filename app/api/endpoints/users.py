@@ -3,7 +3,7 @@
 from flask import request, g
 from flask_restplus import Namespace, Resource, abort
 from .. import auth
-from ..serializers.users import user_container_model, user_model, user_post_model, user_chunk_model
+from ..serializers.users import user_container_model, user_model, user_post_model, user_chunk_model, user_detail_model, user_deposit_model
 from ..serializers.chunks import chunk_model
 from app.extensions import db
 from app.models import User, Chunk
@@ -62,7 +62,7 @@ class UserCollection(Resource):
 class UserItem(Resource):
     decorators = [auth.login_required]
 
-    @ns.marshal_with(user_model)
+    @ns.marshal_with(user_detail_model)
     def get(self, user_id):
         """
         Get user
@@ -90,7 +90,7 @@ class UserItem(Resource):
 class ChunkUserItem(Resource):
     decorators = [auth.login_required]
 
-    @ns.marshal_with(user_model, code=201, description='Chunk successfully added to user.')
+    @ns.marshal_with(user_detail_model, code=201, description='Chunk successfully added to user.')
     @ns.doc(response={
         409: 'Value exist',
         400: 'Validation error'
@@ -103,7 +103,39 @@ class ChunkUserItem(Resource):
 
         data = request.json
         chunk = Chunk.query.get_or_404(data['chunk_id'])
+
+        if g.client.deposit - chunk.price < 0:
+            abort(400, error='User have not enough money')
+        if g.client.have_chunk(chunk) is True:
+            abort(400, error='User already have this chunk')
+
+        g.client.deposit -= chunk.price
         g.client.chunks.append(chunk)
+
+        db.session.add(g.client)
+        db.session.commit()
+
+        return g.client, 201
+
+
+@ns.route('/deposit')
+@ns.response(404, 'User not found')
+class ChunkUserItem(Resource):
+    decorators = [auth.login_required]
+
+    @ns.marshal_with(user_model, code=201, description='Chunk successfully added to user.')
+    @ns.doc(response={
+        409: 'Value exist',
+        400: 'Validation error'
+    })
+    @ns.expect(user_deposit_model)
+    def post(self):
+        """
+        Deposit money
+        """
+
+        data = request.json
+        g.client.deposit += data['amount']
 
         db.session.add(g.client)
         db.session.commit()
