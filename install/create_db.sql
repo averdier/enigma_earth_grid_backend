@@ -103,6 +103,6 @@ INSERT INTO mqtt_clients (created_at, username, password, is_admin) VALUES ('201
 INSERT INTO mqtt_access (created_at, updated_at, topic, access, username) VALUES ('2019-04-24 06:45:51.039637', null, 'sensors/device01/from_clients', 1, 'device01');
 INSERT INTO mqtt_access (created_at, updated_at, topic, access, username) VALUES ('2019-04-24 06:46:03.994846', null, 'sensors/device01/from_device', 2, 'device01');
 
-INSERT INTO public.users (id, created_at, username, secret_hash, email, last_name, first_name, deposit, is_admin) VALUES (1, '2019-04-24 14:55:42.308812', 'rastadev', 'pbkdf2:sha256:150000$FQni21a8$5ba2e0f72c843282faf1899ee696e30c02d9de4a8457f7e507e0e699a743d328', 'rasta@dev.com', null, null, 24.25, true);
+INSERT INTO users (created_at, username, secret_hash, email, last_name, first_name, deposit, is_admin) VALUES ('2019-04-24 14:55:42.308812', 'rastadev', 'pbkdf2:sha256:150000$FQni21a8$5ba2e0f72c843282faf1899ee696e30c02d9de4a8457f7e507e0e699a743d328', 'rasta@dev.com', null, null, 24.25, true);
 INSERT INTO chunks (created_at, topic, name, long, lat, price) VALUES ('2019-04-24 06:44:13.078317', 'chunks/8324716771535245060/data', 'Lille', 3.055467, 50.75, 0);
 INSERT INTO user_chunk (user_id, chunk_id) VALUES (1, 1);
