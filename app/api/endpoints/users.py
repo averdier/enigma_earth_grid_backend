@@ -134,9 +134,13 @@ class ChunkUserItem(Resource):
         """
 
         data = request.json
-        g.client.deposit += data['amount']
+        user = g.client
 
-        db.session.add(g.client)
+        if data['user_id'] is not None and g.client.is_admin:
+            user = User.query.get_or_404(data['user_id'])
+        user.deposit += data['amount']
+
+        db.session.add(user)
         db.session.commit()
 
-        return g.client, 201
+        return user, 201

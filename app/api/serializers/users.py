@@ -39,5 +39,6 @@ user_chunk_model = api.model('User chunk model', {
 })
 
 user_deposit_model = api.model('User deposit model', {
-    'amount': fields.Float(required=True, description='Amount to deposit', min=0)
+    'amount': fields.Float(required=True, description='Amount to deposit', min=0),
+    'user_id': fields.Integer(required=False, description="User Id")
 })
