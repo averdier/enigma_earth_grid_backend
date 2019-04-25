@@ -39,7 +39,7 @@ class ClientCollection(Resource):
         client = MqttClient()
         client.username = data['username']
         client.hash_password(data['password'])
-        client.is_admin = data['is_admin']
+        client.is_admin = data.get('is_admin', False)
 
         db.session.add(client)
         db.session.commit()
