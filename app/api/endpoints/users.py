@@ -47,8 +47,8 @@ class UserCollection(Resource):
             email=data['email'],
             last_name=data['last_name'],
             first_name=data['first_name'],
-            deposit=data['deposit'],
-            is_admin=data['is_admin'],
+            deposit=data.get('deposit', 0),
+            is_admin=data.get('is_admin', False),
         )
 
         db.session.add(user)

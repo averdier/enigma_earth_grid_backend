@@ -37,17 +37,3 @@ def create_app(config_name='default'):
 
 def extensions(flask_app):
     db.init_app(flask_app)
-
-    with flask_app.app_context():
-        from .models import User, Chunk, MqttClient, MqttAccess
-
-        # db.create_all()
-        if User.query.first() is None:
-            admin = User(
-                username='rastadev',
-                secret='rastadev',
-                email='rasta@dev.com',
-                is_admin=True
-            )
-            db.session.add(admin)
-            db.session.commit()
