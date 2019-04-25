@@ -8,7 +8,8 @@ chunk_post_model = api.model('Chunk POST model', {
     'long': fields.Float(required=True, description='Longitude'),
     'topic': fields.String(required=True, description='Topic string'),
     'lat': fields.Float(required=True, description='Latitude'),
-    'price': fields.Float(required=True, description='Price')
+    'price': fields.Float(required=True, description='Price'),
+    'description': fields.String(required=False, description='Description')
 })
 
 chunk_search_model = api.model('Chunk POST search model', {
@@ -23,6 +24,8 @@ chunk_model = api.model('Chunk model', {
     'long': fields.Float(required=True, description='Longitude'),
     'lat': fields.Float(required=True, description='Latitude'),
     'price': fields.Float(required=True, description='Price'),
+    'topic': fields.String(required=True, description='Topic'),
+    'description': fields.String(required=False, description='Description'),
     'created_at': fields.DateTime(required=True, description='Created_at'),
 })
 

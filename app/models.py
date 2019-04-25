@@ -21,6 +21,7 @@ class Chunk(db.Model):
     long = db.Column(db.Float(), nullable=False)
     lat = db.Column(db.Float(), nullable=False)
     price = db.Column(db.Float(), nullable=False)
+    description = db.Column(db.Text, nullable=True)
 
 
 class User(db.Model):

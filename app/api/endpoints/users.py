@@ -4,7 +4,6 @@ from flask import request, g
 from flask_restplus import Namespace, Resource, abort
 from .. import auth
 from ..serializers.users import user_container_model, user_model, user_post_model, user_chunk_model, user_detail_model, user_deposit_model
-from ..serializers.chunks import chunk_model
 from app.extensions import db
 from app.models import User, Chunk
 
@@ -105,9 +104,9 @@ class ChunkUserItem(Resource):
         chunk = Chunk.query.get_or_404(data['chunk_id'])
 
         if g.client.deposit - chunk.price < 0:
-            abort(400, error='User have not enough money')
+            abort(400, error="T'as pas assez de sous")
         if g.client.have_chunk(chunk) is True:
-            abort(400, error='User already have this chunk')
+            abort(400, error="Tu l\'as déjà")
 
         g.client.deposit -= chunk.price
         g.client.chunks.append(chunk)
