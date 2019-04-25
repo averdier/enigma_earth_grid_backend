@@ -45,7 +45,8 @@ class ChunkCollection(Resource):
             lat=data['lat'],
             long=data['long'],
             topic=data['topic'],
-            price=data['price']
+            price=data['price'],
+            description=data['description']
         )
 
         db.session.add(chunk)
