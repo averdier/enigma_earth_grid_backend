@@ -11,8 +11,8 @@ user_post_model = api.model('User POST model', {
     'email': fields.String(required=True, description='Email'),
     'last_name': fields.String(required=True, description='Last Name'),
     'first_name': fields.String(required=True, description='First Name'),
-    'deposit': fields.Float(required=True, description='Deposit'),
-    'is_admin': fields.Boolean(required=True, description='Is Admin'),
+    'deposit': fields.Float(required=False, default=0, description='Deposit'),
+    'is_admin': fields.Boolean(required=False, default=False, description='Is Admin'),
 })
 
 user_model = api.model('User model', {
@@ -21,8 +21,8 @@ user_model = api.model('User model', {
     'email': fields.String(required=True, description='Email'),
     'last_name': fields.String(required=True, description='Last Name'),
     'first_name': fields.String(required=True, description='First Name'),
-    'deposit': fields.Float(required=False, default=0, description='Deposit'),
-    'is_admin': fields.Boolean(required=False, default=False, description='Is_admin'),
+    'deposit': fields.Float(required=True, description='Deposit'),
+    'is_admin': fields.Boolean(required=True, description='Is_admin'),
     'created_at': fields.DateTime(required=True, description='Created_at'),
 })
 
